@@ -30,4 +30,4 @@ for i in numbers:
     plt.plot(three_n_plus_1(i), label="%d" % i)
 plt.title("3n+1")
 plt.legend()
-plt.show()
+plt.savefig('3nplus1.png')

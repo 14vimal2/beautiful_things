@@ -78,4 +78,4 @@ for i in range(1, len(numbers)):
         positive_direction = not positive_direction
 
 plt.title('Fibonacci Spiral', size=20)
-plt.show()
+plt.savefig('fibspiral.png')
