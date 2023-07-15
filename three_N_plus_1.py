@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+# make black background
+plt.style.use('dark_background')
 
 numbers = input("Enter the numbers (seperated by space): ")
 
@@ -26,5 +28,6 @@ def three_n_plus_1(n):
 
 for i in numbers:
     plt.plot(three_n_plus_1(i), label="%d" % i)
+plt.title("3n+1")
 plt.legend()
 plt.show()
