@@ -60,6 +60,8 @@ while current <= N:
             else:
                 ygoal = y - ych
         
+# make plot size a square
+plt.figure(figsize=(6, 6))
 plt.title('Ulam Spiral', size=20)
 # plt.xlim(-min(xcoordinates), max(xcoordinates))
 # plt.ylim(-min(ycoordinates), max(ycoordinates))

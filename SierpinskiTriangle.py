@@ -34,5 +34,5 @@ plt.title('Sierpinski Triangle', size=20)
 # make figure size a square
 plt.plot(xpoints, ypoints, 'c.', markersize = 0.1)
 # save the figure
-plt.savefig('sierpinski_triangle.png')
+plt.savefig('sierpinski_triangle.png', dpi=1000)
 plt.close()

@@ -35,7 +35,7 @@ def drawQuarter(point, radius, starting_angle):
         angle_ += 1
     # return the list of points
     # print(xpoints, ypoints) 
-    plt.plot(xpoints, ypoints, 'w')
+    plt.plot(xpoints, ypoints, 'c')
     # plt.show()
 
 

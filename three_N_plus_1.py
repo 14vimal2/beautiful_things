@@ -28,6 +28,6 @@ def three_n_plus_1(n):
 
 for i in numbers:
     plt.plot(three_n_plus_1(i), label="%d" % i)
-plt.title("3n+1")
+plt.title("3n+1", size=20)
 plt.legend()
 plt.savefig('3nplus1.png')
