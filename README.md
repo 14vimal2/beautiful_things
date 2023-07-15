@@ -20,3 +20,8 @@ aise hi sexy lag raha tha
 
 ### 3n+1 problem
 ![3n+1](3nplus1.png)
+
+### mandelbrot set
+
+### Sierepinski triangle
+![sierpinski triangle](sierpinski_triangle.png)
