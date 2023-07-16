@@ -36,6 +36,11 @@ body {
     width: 1ch;
 }
 
+a {
+    color: cyan;
+    font-weight: bolder;
+}
+
 
 /* style for username */
 
