@@ -41,6 +41,10 @@ a {
     font-weight: bolder;
 }
 
+iframe {
+    color: cyan;
+}
+
 
 /* style for username */
 
@@ -62,6 +66,10 @@ a {
 }
 
 /* make cursor style as box like */
+
+.paused {
+    animation-play-state: paused;
+}
 
 #cursor {
     width: 1ch;
