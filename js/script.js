@@ -36,6 +36,12 @@ const PATTERNS = [
         code: "code to generate pattern5",
         image: "prime_spiral.png"
     },
+    {
+        name: "mandelbrot",
+        desc: "description of pattern6",
+        code: "code to generate pattern6",
+        image: "mandelbrot_set.png"
+    }
 ]
 
 const COMMANDS = [
