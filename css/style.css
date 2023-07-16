@@ -1,0 +1,99 @@
+** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Path: css/style.css */
+
+/* dark background */
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+/* apply dark background to input */
+
+#input-container input {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 0;
+    /* make border size 0 */
+    border: 0;
+    /* remove border on focus */
+    outline: none;
+    caret-color: #1a1a1a;
+    width: 1ch;
+}
+
+
+/* style for username */
+
+.username {
+    color: green;
+    font-weight: bold;
+    /* add padding */
+    padding: 10px 0;
+    /* add left padding for user icon */
+    /* add relative positioning */
+    position: relative;
+}
+
+/* style for current path */
+
+.current-path {
+    color: dodgerblue;
+    font-weight: bold;
+}
+
+/* make cursor style as box like */
+
+#cursor {
+    width: 1ch;
+    background-color: white;
+    animation: cursor-blink 0.85s infinite;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes cursor-blink {
+    0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}    
+}
+
+.command {
+    color: yellow;
+    font-weight: bold;
+}
+
+.banner {
+    line-height: 1.0;
+    /* add font color as gradient of rainbow color */
+    background: linear-gradient(45deg, #f00, #f90, #ff0, #0f0, #00f, #90f, #f0f);
+  background-size: 600% 100%;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  animation: rainbow-animation 6s linear infinite;
+
+
+}
+@keyframes rainbow-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
