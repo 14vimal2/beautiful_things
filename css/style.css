@@ -33,7 +33,7 @@ body {
     /* remove border on focus */
     outline: none;
     caret-color: #1a1a1a;
-    width: 1ch;
+    width: 0ch;
 }
 
 a {

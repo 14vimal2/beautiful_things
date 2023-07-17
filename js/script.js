@@ -601,6 +601,10 @@ INPUT_BOX.addEventListener('focusin', focusIn)
 INPUT_BOX.focus()
 
 
+document.addEventListener('click', function() {
+    INPUT_BOX.focus();
+})
+
 function focusOut() {
     // remove blinking effect in cursor
     CURSOR.style.animationPlayState = 'paused';
