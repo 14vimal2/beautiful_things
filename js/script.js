@@ -370,6 +370,161 @@ const PATTERNS = [
             
             `,
         image: "mandelbrot_set.png"
+    },
+    {
+        name: "lorenz_attracter",
+        desc: "description of pattern7",
+        code:
+            `
+            import numpy as np
+            from scipy.integrate import solve_ivp
+            import matplotlib.pyplot as plt
+            from mpl_toolkits.mplot3d import Axes3D
+            
+            # Create an image of the Lorenz attractor.
+            # The maths behind this code is described in the scipython blog article
+            # at https://scipython.com/blog/the-lorenz-attractor/
+            # Christian Hill, January 2016.
+            # Updated, January 2021 to use scipy.integrate.solve_ivp.
+            
+            WIDTH, HEIGHT, DPI = 1000, 750, 100
+            
+            # Lorenz paramters and initial conditions.
+            sigma, beta, rho = 10, 2.667, 28
+            u0, v0, w0 = 0, 1, 1.05
+            
+            # Maximum time point and total number of time points.
+            tmax, n = 100, 10000
+            
+            def lorenz(t, X, sigma, beta, rho):
+                """The Lorenz equations."""
+                u, v, w = X
+                up = -sigma*(u - v)
+                vp = rho*u - v - u*w
+                wp = -beta*w + u*v
+                return up, vp, wp
+            
+            # Integrate the Lorenz equations.
+            soln = solve_ivp(lorenz, (0, tmax), (u0, v0, w0), args=(sigma, beta, rho),
+                             dense_output=True)
+            # Interpolate solution onto the time grid, t.
+            t = np.linspace(0, tmax, n)
+            x, y, z = soln.sol(t)
+            
+            # Plot the Lorenz attractor using a Matplotlib 3D projection.
+            fig = plt.figure(facecolor='k', figsize=(WIDTH/DPI, HEIGHT/DPI))
+            fig.add_subplot(111, facecolor='k', projection='3d')
+            ax = fig.gca() # 
+            fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
+            
+            # Make the line multi-coloured by plotting it in segments of length s which
+            # change in colour across the whole time series.
+            s = 10
+            cmap = plt.cm.winter
+            for i in range(0,n-s,s):
+                ax.plot(x[i:i+s+1], y[i:i+s+1], z[i:i+s+1], color=cmap(i/n), alpha=0.4)
+            
+            # Remove all the axis clutter, leaving just the curve.
+            ax.set_axis_off()
+            
+            plt.savefig('lorenz_attracter.png', dpi=DPI)
+            plt.show()
+            `,
+        image: "lorenz_attracter.png"
+    },
+    {
+        name: "maurer_rose",
+        desc: "description of pattern8",
+        code:
+            `
+            import sys
+            import numpy as np
+            import matplotlib.pyplot as plt
+            
+            """Plot a "Maurer Rose" with (integer) parameters n, d."""
+            plt.style.use('dark_background')
+            
+            def get_rose_xy(n, d):
+                """Get the Cartesian coordinates for points on the rose."""
+            
+                # The rose is (r = sin(nk), k) in polar coordinates, for
+                # k = d, 2d, 3d, ..., 360d.
+                # Add a final point at 361d to close the curve when plotted.
+                k = d * np.linspace(0, 361, 361)
+                r = np.sin(np.radians(n * k))
+                x = r * np.cos(np.radians(k))
+                y = r * np.sin(np.radians(k))
+                return x, y
+            
+            def draw_rose(ax, n, d, c='r'):
+                """Draw the Maurer rose defined by (n, d) in colour c."""
+            
+                x, y = get_rose_xy(n, d)
+                ax.plot(x, y, c=c, lw=0.5)
+                ax.axis('equal')
+                ax.axis('off')
+            
+            if __name__ == '__main__':
+                n, d = int(sys.argv[1]), int(sys.argv[2])
+                fig, ax = plt.subplots()
+                draw_rose(ax, n, d, 'tab:red')
+                plt.savefig('maurer_rose.png', dpi=500)
+                plt.show()
+            `,
+        image: "maurer_rose.png"
+    },
+    {
+        name: "spirograph",
+        desc: "description of pattern9",
+        code:
+            `import matplotlib.pyplot as plt
+            from math import cos, sin
+            
+            plt.style.use('dark_background')
+            
+            
+            plt.figure(figsize=(4, 4))
+            plt.title('Spirograph', size=20)
+            
+            
+            def drawSpirograph(R, r, l, times=25):
+            
+                # initialize the list of x and y coordinates
+                xpoints, ypoints = [], []
+            
+                # iterate through the number of degrees
+                for theta in range(0, 360 * times):
+            
+                    # convert the degrees to radians
+                    theta = theta * 3.14 / 180
+            
+                    # get the x coordinate
+                    x = (R - r) * cos(theta) + l * cos((R - r) * theta / r)
+            
+                    # get the y coordinate
+                    y = (R - r) * sin(theta) - l * sin((R - r) * theta / r)
+            
+                    # append the x and y coordinates to the list
+                    xpoints.append(x)
+                    ypoints.append(y)
+            
+                # plot the points
+                # make figure size a square
+                plt.plot(xpoints, ypoints, '.', markersize=0.8)
+                # save the figure
+            
+            
+            # draw the spirograph
+            drawSpirograph(100, 30, 20)
+            drawSpirograph(130, 10, 8)
+            drawSpirograph(110, 50, 35)
+            drawSpirograph(105, 70, 65)
+            drawSpirograph(150, 35, 25)
+            
+            plt.savefig('spirograph.png', dpi=1000)
+            plt.close()
+            `,
+        image: "spirograph.png"
     }
 ]
 
@@ -478,7 +633,7 @@ function handleKeyPress(event) {
         var input = INPUT_BOX.value;
         var lastChar = input[input.length - 1];
         INPUT_BOX.value = input.slice(0,input.length - 1);
-        AFTER_CURSOR.innerHTML += lastChar;
+        AFTER_CURSOR.innerHTML = lastChar + AFTER_CURSOR.innerHTML;
         }
 
     } else if (key == 39) { // right arrow key then move imaginary cursor to the right
