@@ -4,10 +4,9 @@
 this is just a hobby thing. I'm trying to try all beautiful things in maths or any other domains which I can visualize using code.
 
 ## Why?
-![aishe hi sexy lag raha tha](aisehi.jpeg)
-
+I thought it to be interesting.
 ## Want to add something?
-you are free to make a pull request. I'll merge it if it's beautiful enough. I'll also add your name in the contributors list. Just make sure background is black (I'm racist sue me).
+you are free to make a pull request. I'll merge it if it's beautiful enough. I'll also add your name in the contributors list. Just make sure background is black (I like it this way).
 
 <!-- insert image aisehi.jpeg-->
 
