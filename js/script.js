@@ -614,21 +614,14 @@ function focusIn() {
     CURSOR.style.animationPlayState = 'running';
 }
 
+
+// Right now it's not taking space into account
 function resetInputBoxSize() {
-    const inputWidth = INPUT_BOX.value;
-
-    // create a temporary element with value of input box
-    // and get its width using getBoundingClientRect()
-
     var tmp = document.createElement("span");
-    // tmp.style.fontSize = "16px";
-    // tmp.style.fontFamily = "monospace";
     tmp.style.visibility = "hidden";
-    tmp.innerText = inputWidth;
+    tmp.innerText = INPUT_BOX.value;
     document.body.appendChild(tmp);
     var width = tmp.getBoundingClientRect().width;
-
-    // var width = inputWidth.length * 8;
     INPUT_BOX.style.width = width + "px";
 
     // remove the temporary element
@@ -640,12 +633,10 @@ function handleKeyPress(event) {
     var key = event.keyCode || event.which;
     if (key == 13) {
         event.preventDefault();
-        console.log('Enter key pressed');
         submitInput();
     } 
     else if (key == 37) { // left arrow key then move imaginary cursor to the left
         event.preventDefault();
-        console.log('left arrow key pressed');
         if (INPUT_BOX.value.length > 0) {
 
         // remove the last character from input box and add it to the end
@@ -657,12 +648,25 @@ function handleKeyPress(event) {
 
     } else if (key == 39) { // right arrow key then move imaginary cursor to the right
         event.preventDefault();
-        console.log('right arrow key pressed');
         if (AFTER_CURSOR.innerHTML.length > 0) {
             var char = AFTER_CURSOR.innerHTML[0];
             AFTER_CURSOR.innerHTML = AFTER_CURSOR.innerHTML.slice(1);
             INPUT_BOX.value += char;
         }
+    } else if (key == 32) {
+        console.log('space pressed');
+        // get the width of the input box
+        console.log(INPUT_BOX.style.width)
+
+        var width = INPUT_BOX.style.width.slice(0, INPUT_BOX.style.width.length-2)
+
+        console.log(width)
+
+        INPUT_BOX.style.width = +width + 8 + 'px';
+
+        console.log(+width + 8 + 'px')
+        console.log(INPUT_BOX.style.width)
+        return;
     }
 
     resetInputBoxSize();

@@ -1,14 +1,11 @@
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 # make black background
 plt.style.use('dark_background')
 
-numbers = input("Enter the numbers (seperated by space): ")
+number = int(input("Enter the number: "))
 
 # split the numbers by spaces or commas where spaces may be irregular
-numbers = numbers.split(" ")
-
-for i in range(len(numbers)):
-    numbers[i] = int(numbers[i])
 
 def three_n_plus_1(n):
     """Return the number of steps required to reach 1."""
@@ -26,8 +23,41 @@ def three_n_plus_1(n):
             x = 3 * x + 1
     return y
 
-for i in numbers:
-    plt.plot(three_n_plus_1(i), label="%d" % i)
-plt.title("3n+1", size=20)
-plt.legend()
-plt.savefig('3nplus1.png')
+
+fig = plt.figure()
+plt.title("3n+1 : %d" % number, size=20)
+
+ax = fig.add_subplot(111)
+
+
+# for i in numbers:
+#     plt.plot(three_n_plus_1(i), label="%d" % i)
+
+y = three_n_plus_1(number)
+x = list(range(len(y)))
+line = ax.plot([], [])
+
+ax.set_xlim(0,len(y))
+ax.set_ylim(0, max(y))
+ax.set_xticks([])
+ax.set_yticks([])
+
+def update(frame):
+    """Update the graph."""
+    xdata = x[:frame]
+    ydata = y[:frame]
+    line[0].set_xdata(xdata)
+    line[0].set_ydata(ydata)
+    return line
+
+
+
+# animate the graph
+ani = animation.FuncAnimation(fig, update,frames=len(y), interval=50)
+
+ani.save('3n+1.gif','pillow')
+
+ani.save('3n+1.mp4', writer='ffmpeg', fps=30)
+
+plt.show()
+# plt.savefig('3nplus1.png')
